@@ -2,11 +2,12 @@ package com.gridnine.testing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FlightsFilter {
 
-    private List<Flight> flights;
+    private final List<Flight> flights;
 
     public FlightsFilter(List<Flight> flights) {
         this.flights = flights;
@@ -17,6 +18,9 @@ public class FlightsFilter {
         for (FlightsTesting f : filters) {
            result= f.flightsTest(flights);
         }
-        return result;
+        List<Flight> flightsRes = new ArrayList<>(flights);
+        flightsRes.removeAll(result);
+        return flightsRes;
     }
+
 }
